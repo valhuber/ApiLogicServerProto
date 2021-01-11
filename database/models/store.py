@@ -1,16 +1,15 @@
 from typing import List
 
 from safrs import SAFRSBase
-from database.models.types import ChoiceType
+from database.models.types.choice_ext import ChoiceType  # FIXME added choice_ext
 from sqlalchemy_utils.types.email import EmailType
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from db import db, Base, session
+from database.db import db, Base, session
 from database.models.item import ItemModel
 from safrs.util import classproperty
-
 
 
 class StoreModel(SAFRSBase, Base):

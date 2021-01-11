@@ -2,7 +2,7 @@ from safrs import SAFRSBase
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 
-from db import db, session, Base
+from database.db import db, session, Base
 from .base_model import BaseModel
 
 

@@ -1,6 +1,6 @@
 from safrs import ValidationError
 from sqlalchemy import TypeDecorator
-from db import db
+from database.db import db
 
 
 class EmailType(TypeDecorator):

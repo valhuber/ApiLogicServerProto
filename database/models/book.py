@@ -1,5 +1,5 @@
 from safrs import SAFRSBase
-from db import db
+from database.db import db
 
 
 #  class Book(SAFRSBase, db.Model):

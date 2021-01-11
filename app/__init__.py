@@ -1,5 +1,5 @@
 from admin.admin_view_ext import AdminViewExt
-from db import db, session
+from database import db  # , session  FIXME eh?
 from flask import Flask
 from api.json_encoder import SAFRSJSONEncoderExt
 
@@ -10,16 +10,17 @@ except:
     print("Failed to import flask-admin")
 from safrs import SAFRSAPI
 from database import models
-from database.models import User, Book
+from database.models import user, book
 
 
 def create_app(config_filename=None, host="localhost"):
-    app = Flask("LogicBank Demo App")
+    app = Flask("API Logic Server")
     app.config.from_object("config.Config")
     #    app.config.update(SQLALCHEMY_DATABASE_URI="sqlite://")
-    db.init_app(app)
+    db.db.init_app(app)
 
     with app.app_context():
+        """ FIXEM db assumed to exist
         db.create_all()
         # Populate the db with users and a books and add the book to the user.books relationship
         #  session.commit()
@@ -28,6 +29,7 @@ def create_app(config_filename=None, host="localhost"):
             book = Book(name=f"test book {i}")
             user.books.append(book)
             session.commit()
+        """
 
         create_api(app, host)
         create_admin_ui(app)

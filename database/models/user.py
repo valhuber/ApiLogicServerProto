@@ -1,6 +1,6 @@
 from typing import List
 from safrs import SAFRSBase
-from db import db
+from database.db import db
 from database.models.types.email_type import EmailType
 
 

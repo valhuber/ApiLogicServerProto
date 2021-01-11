@@ -1,5 +1,5 @@
 from safrs import SAFRSJSONEncoder
-from database.models.types import Choice as ChoiceExt
+from database.models.types.choice_ext import Choice as ChoiceExt
 from sqlalchemy_utils.types.choice import Choice
 
 

@@ -19,7 +19,7 @@ app.config.setdefault('SQLALCHEMY_COMMIT_ON_TEARDOWN', False)
 '''
 
 basedir = path.abspath(path.dirname(__file__))
-load_dotenv(path.join(basedir, ".env"))
+load_dotenv(path.join(basedir, "default.env"))
 
 
 class Config:
@@ -37,7 +37,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = environ.get("SQLALCHEMY_DATABASE_URI")
     if 'sqlite' in SQLALCHEMY_DATABASE_URI:
         util.log('Basedir: '+basedir)
-        SQLALCHEMY_DATABASE_URI = "sqlite:///" + path.join(basedir, "sqlite.db")+ '?check_same_thread=False'
+        SQLALCHEMY_DATABASE_URI = "sqlite:///" + path.join(basedir, "db.sqlite")+ '?check_same_thread=False'
 
     util.log(SQLALCHEMY_DATABASE_URI)
 
