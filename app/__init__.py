@@ -10,15 +10,15 @@ from database import db  # , session  FIXME eh?
 from flask import Flask
 from api.json_encoder import SAFRSJSONEncoderExt
 from logic import declare_logic
+from safrs import SAFRSAPI, ValidationError
+from database import models
+from database.models import user, book
 
 try:
     from flask_admin import Admin
     from flask_admin.contrib import sqla
 except:
     print("Failed to import flask-admin")
-from safrs import SAFRSAPI, ValidationError
-from database import models
-from database.models import user, book
 
 
 def create_app(config_filename=None, host="localhost"):
@@ -46,16 +46,6 @@ def create_app(config_filename=None, host="localhost"):
     LogicBank.activate(session=session, activator=declare_logic, constraint_event=constraint_handler)
 
     with app.app_context():
-        """ FIXME db assumed to exist  REMOVE
-        db.create_all()
-        # Populate the db with users and a books and add the book to the user.books relationship
-        #  session.commit()
-        for i in range(1):
-            user = User(name=f"user{i}", email=f"email{i}@email.com")
-            book = Book(name=f"test book {i}")
-            user.books.append(book)
-            session.commit()
-        """
 
         # create_api(app, host)   REMOVE
         create_api_models.create_api(app, host)
