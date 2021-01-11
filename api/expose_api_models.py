@@ -4,7 +4,7 @@ from api.json_encoder import SAFRSJSONEncoderExt
 from database import models
 
 
-def create_api(app, HOST="localhost", PORT=5000, API_PREFIX="/api"):
+def expose_models(app, HOST="localhost", PORT=5000, API_PREFIX="/api"):
     """ generated file - expose endpoints
     """
     api = SAFRSAPI(app, host=HOST, port=PORT, prefix=API_PREFIX, json_encoder=SAFRSJSONEncoderExt)

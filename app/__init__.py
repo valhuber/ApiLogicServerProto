@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
 from admin.admin_view_ext import AdminViewExt
-from api import create_api_models
+from api import expose_api_models
 from database import db  # , session  FIXME eh?
 from flask import Flask
 from api.json_encoder import SAFRSJSONEncoderExt
@@ -48,7 +48,7 @@ def create_app(config_filename=None, host="localhost"):
     with app.app_context():
 
         # create_api(app, host)   REMOVE
-        create_api_models.create_api(app, host)
+        expose_api_models.expose_models(app, host)
         create_admin_ui(app)
 
     return app
