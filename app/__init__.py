@@ -5,6 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
 from admin.admin_view_ext import AdminViewExt
+from api import create_api_models
 from database import db  # , session  FIXME eh?
 from flask import Flask
 from api.json_encoder import SAFRSJSONEncoderExt
@@ -26,11 +27,11 @@ def create_app(config_filename=None, host="localhost"):
     #    app.config.update(SQLALCHEMY_DATABASE_URI="sqlite://")
     from database import db  # , session  FIXME eh?
     use_file = True
-    if use_file:
+    if use_file:  # this is a little obscure - can we bring inline?
         db.db.init_app(app)
         session = db.session
     else:
-        # db: SQLAlchemy = SQLAlchemy()
+        # db: SQLAlchemy = SQLAlchemy()  REMOVE
         db = safrs.DB  # opens (what?) database, returning session
         Base: declarative_base = db.Model
         session: Session = db.session
@@ -45,7 +46,7 @@ def create_app(config_filename=None, host="localhost"):
     LogicBank.activate(session=session, activator=declare_logic, constraint_event=constraint_handler)
 
     with app.app_context():
-        """ FIXEM db assumed to exist
+        """ FIXME db assumed to exist  REMOVE
         db.create_all()
         # Populate the db with users and a books and add the book to the user.books relationship
         #  session.commit()
@@ -56,13 +57,14 @@ def create_app(config_filename=None, host="localhost"):
             session.commit()
         """
 
-        create_api(app, host)
+        # create_api(app, host)   REMOVE
+        create_api_models.create_api(app, host)
         create_admin_ui(app)
 
     return app
 
 
-# create the api endpointsx
+# create the api endpointsx  REMOVE
 def create_api(app, HOST="localhost", PORT=5000, API_PREFIX="/api"):
     api = SAFRSAPI(app, host=HOST, port=PORT, prefix=API_PREFIX, json_encoder=SAFRSJSONEncoderExt)
     api.expose_object(models.User)
