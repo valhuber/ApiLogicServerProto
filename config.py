@@ -37,7 +37,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = environ.get("SQLALCHEMY_DATABASE_URI")
     if 'sqlite' in SQLALCHEMY_DATABASE_URI:
         util.log('Basedir: '+basedir)
-        SQLALCHEMY_DATABASE_URI = "sqlite:///" + path.join(basedir, "db.sqlite")+ '?check_same_thread=False'
+        SQLALCHEMY_DATABASE_URI = "sqlite:///" + path.join(basedir, "database/db.sqlite")+ '?check_same_thread=False'
 
     util.log(SQLALCHEMY_DATABASE_URI)
 

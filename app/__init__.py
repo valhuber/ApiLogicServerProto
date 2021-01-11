@@ -1,14 +1,21 @@
+import safrs
+from logic_bank.logic_bank import LogicBank
+from logic_bank.exec_row_logic.logic_row import LogicRow
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import Session
+
 from admin.admin_view_ext import AdminViewExt
 from database import db  # , session  FIXME eh?
 from flask import Flask
 from api.json_encoder import SAFRSJSONEncoderExt
+from logic import declare_logic
 
 try:
     from flask_admin import Admin
     from flask_admin.contrib import sqla
 except:
     print("Failed to import flask-admin")
-from safrs import SAFRSAPI
+from safrs import SAFRSAPI, ValidationError
 from database import models
 from database.models import user, book
 
@@ -17,7 +24,25 @@ def create_app(config_filename=None, host="localhost"):
     app = Flask("API Logic Server")
     app.config.from_object("config.Config")
     #    app.config.update(SQLALCHEMY_DATABASE_URI="sqlite://")
-    db.db.init_app(app)
+    from database import db  # , session  FIXME eh?
+    use_file = True
+    if use_file:
+        db.db.init_app(app)
+        session = db.session
+    else:
+        # db: SQLAlchemy = SQLAlchemy()
+        db = safrs.DB  # opens (what?) database, returning session
+        Base: declarative_base = db.Model
+        session: Session = db.session
+        print("got session: " + str(session))
+
+    import logic
+
+    def constraint_handler(message: str, constraint: object,
+                           logic_row: LogicRow):  # message: str, constr: constraint, row: logic_row):
+        raise ValidationError(message)
+
+    LogicBank.activate(session=session, activator=declare_logic, constraint_event=constraint_handler)
 
     with app.app_context():
         """ FIXEM db assumed to exist

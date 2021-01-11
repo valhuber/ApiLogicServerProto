@@ -8,7 +8,7 @@ from logic_bank.rule_type import constraint
 from sqlalchemy.orm import session
 from safrs import ValidationError
 
-import db
+import database.db
 from logic.rules_bank import declare_logic
 
 """ Initialization
@@ -37,13 +37,13 @@ if do_engine_logging:
     engine_logger.addHandler(handler)
 
 
-session: session = db.session
+# session: session = db.session
 
 
 def constraint_handler(message: str, constraint: constraint, logic_row: logic_row):    # message: str, constr: constraint, row: logic_row):
     raise ValidationError(message)
 
 
-LogicBank.activate(session=session, activator=declare_logic, constraint_event=constraint_handler )
+# LogicBank.activate(session=session, activator=declare_logic, constraint_event=constraint_handler )
 
 util.log("LogicBank activated\n")
