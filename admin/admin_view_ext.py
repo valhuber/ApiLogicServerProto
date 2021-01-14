@@ -3,7 +3,7 @@ from flask import flash
 from safrs import ValidationError
 from sqlalchemy.orm.base import instance_state
 
-from admin.admin_model_converter_ext import AdminModelConverterExt
+from ..admin.admin_model_converter_ext import AdminModelConverterExt
 
 
 class AdminViewExt(ModelView):
