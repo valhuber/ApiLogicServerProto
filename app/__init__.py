@@ -4,15 +4,14 @@ from logic_bank.exec_row_logic.logic_row import LogicRow
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
-from admin.admin_view_ext import AdminViewExt
-from api import expose_api_models
-from database import db  # , session  FIXME eh?
+from ..admin.admin_view_ext import AdminViewExt
+from ..api import expose_api_models
+from ..database import db  # , session
 from flask import Flask
-from api.json_encoder import SAFRSJSONEncoderExt
-from logic import declare_logic
+from ..api.json_encoder import SAFRSJSONEncoderExt
+from ..logic import declare_logic
 from safrs import SAFRSAPI, ValidationError
-from database import models
-from database.models import user, book
+from ..database import models
 
 try:
     from flask_admin import Admin
