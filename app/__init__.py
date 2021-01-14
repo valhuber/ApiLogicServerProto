@@ -25,8 +25,8 @@ def create_app(config_filename=None, host="localhost"):
     app.config.from_object("config.Config")
     #    app.config.update(SQLALCHEMY_DATABASE_URI="sqlite://")
     # from database import db  # , session  FIXME eh?
-    use_file = True
-    if use_file:  # this is a little obscure - can we bring inline?
+    use_file = False
+    if use_file:  # TODO cleanup this is a little obscure - can we bring inline?
         db.db.init_app(app)
         session = db.session
     else:
