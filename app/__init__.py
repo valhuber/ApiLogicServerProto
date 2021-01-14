@@ -9,7 +9,7 @@ from ..api import expose_api_models
 from ..database import db  # , session
 from flask import Flask
 from ..api.json_encoder import SAFRSJSONEncoderExt
-from ..logic import declare_logic
+from ..logic import rules_bank
 from safrs import SAFRSAPI, ValidationError
 from ..database import models
 
@@ -24,7 +24,7 @@ def create_app(config_filename=None, host="localhost"):
     app = Flask("API Logic Server")
     app.config.from_object("config.Config")
     #    app.config.update(SQLALCHEMY_DATABASE_URI="sqlite://")
-    from database import db  # , session  FIXME eh?
+    # from database import db  # , session  FIXME eh?
     use_file = True
     if use_file:  # this is a little obscure - can we bring inline?
         db.db.init_app(app)
@@ -36,13 +36,11 @@ def create_app(config_filename=None, host="localhost"):
         session: Session = db.session
         print("got session: " + str(session))
 
-    import logic
-
     def constraint_handler(message: str, constraint: object,
                            logic_row: LogicRow):  # message: str, constr: constraint, row: logic_row):
         raise ValidationError(message)
 
-    LogicBank.activate(session=session, activator=declare_logic, constraint_event=constraint_handler)
+    LogicBank.activate(session=session, activator=rules_bank.declare_logic, constraint_event=constraint_handler)
 
     with app.app_context():
 
@@ -51,16 +49,6 @@ def create_app(config_filename=None, host="localhost"):
         create_admin_ui(app)
 
     return app
-
-
-# create the api endpointsx  REMOVE
-def create_api(app, HOST="localhost", PORT=5000, API_PREFIX="/api"):
-    api = SAFRSAPI(app, host=HOST, port=PORT, prefix=API_PREFIX, json_encoder=SAFRSJSONEncoderExt)
-    api.expose_object(models.User)
-    api.expose_object(models.Book)
-    api.expose_object(models.StoreModel)
-    api.expose_object(models.ItemModel)
-    print("Created API: http://{}:{}{}".format(HOST, PORT, API_PREFIX))
 
 
 def create_admin_ui(app):
