@@ -4,7 +4,8 @@ from logic_bank.exec_row_logic.logic_row import LogicRow
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
-from ..admin.admin_view_ext import AdminViewExt
+#  FIXME ImportError: attempted relative import beyond top-level package
+#   from ..admin.admin_view_ext import AdminViewExt
 from ..api import expose_api_models
 from ..database import db  # , session
 from flask import Flask
