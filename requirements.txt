@@ -8,4 +8,4 @@ six
 email-validator
 LogicBank
 SAFRS
-
+logicbankutils
