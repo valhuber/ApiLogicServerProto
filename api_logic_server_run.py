@@ -17,7 +17,7 @@ import sys
 import logic_bank_utils.util as logic_bank_utils
 
 (did_fix_path, sys_env_info) = \
-    logic_bank_utils.add_python_path(project_dir="LogicBank", my_file=__file__)
+    logic_bank_utils.add_python_path(project_dir="LogicBank", my_file=__file__)  # FIXME -> project_name
 
 from flask import render_template
 from safrs import ValidationError
