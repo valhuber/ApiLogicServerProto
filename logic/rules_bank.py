@@ -1,5 +1,5 @@
 from logic_bank.logic_bank import Rule
-from ..database import models
+from database import models
 
 
 def declare_logic():

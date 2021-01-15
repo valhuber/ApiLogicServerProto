@@ -1,5 +1,5 @@
 from safrs import SAFRSJSONEncoder
-from database.models.types.choice_ext import Choice as ChoiceExt
+# FIXME Achim    from database.models.types.choice_ext import Choice as ChoiceExt
 from sqlalchemy_utils.types.choice import Choice
 
 
@@ -12,8 +12,10 @@ class SAFRSJSONEncoderExt(SAFRSJSONEncoder):
     """
 
     def default(self, obj, **kwargs):
+        """ FIXME Achim
         if isinstance(obj, ChoiceExt):
             return obj.code
+        """
         if isinstance(obj, Choice):
             return obj.code
 

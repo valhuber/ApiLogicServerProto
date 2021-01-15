@@ -1,5 +1,5 @@
-from safrs import SAFRSAPI as api
+from safrs import SAFRSAPI
 
-from .json_encoder import SAFRSJSONEncoderExt
-from ..database import models
+# FIXME from .json_encoder import SAFRSJSONEncoderExt
+from database import models
 

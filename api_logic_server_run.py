@@ -19,6 +19,12 @@ from safrs import ValidationError
 
 import app as app
 
+import logic_bank_utils.util as logic_bank_utils
+
+(did_fix_path, sys_env_info) = \
+    logic_bank_utils.add_python_path(project_dir="LogicBank", my_file=__file__)
+
+
 # address where the api will be hosted, change this if you're not running the app on localhost!
 host = sys.argv[1] if sys.argv[
                       1:] else "localhost"  # 127.0.0.1 check in swagger or your lient what is used you wight need cors support
