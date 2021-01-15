@@ -14,15 +14,15 @@
 """
 import sys
 
-from flask import render_template
-from safrs import ValidationError
-
-import app as app
-
 import logic_bank_utils.util as logic_bank_utils
 
 (did_fix_path, sys_env_info) = \
     logic_bank_utils.add_python_path(project_dir="LogicBank", my_file=__file__)
+
+from flask import render_template
+from safrs import ValidationError
+
+import app as app
 
 
 # address where the api will be hosted, change this if you're not running the app on localhost!
