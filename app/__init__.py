@@ -4,15 +4,14 @@ from logic_bank.exec_row_logic.logic_row import LogicRow
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
-#  FIXME ImportError: attempted relative import beyond top-level package
-#   from ..admin.admin_view_ext import AdminViewExt
-from ..api import expose_api_models
-from ..database import db  # , session
+from admin.admin_view_ext import AdminViewExt
+from api import expose_api_models
+from database import db  # , session
 from flask import Flask
-from ..api.json_encoder import SAFRSJSONEncoderExt
-from ..logic import rules_bank
+from api.json_encoder import SAFRSJSONEncoderExt
+from logic import rules_bank
 from safrs import SAFRSAPI, ValidationError
-from ..database import models
+from database import models
 
 try:
     from flask_admin import Admin
