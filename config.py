@@ -34,10 +34,12 @@ class Config:
     # Database
     # SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
     #                          'sqlite:///' + os.path.join(basedir, 'app.db') + '?check_same_thread=False'
-    SQLALCHEMY_DATABASE_URI = "/Users/val/dev/ApiLogicServer/app_logic_server/db.sqlite" # TODO fix in apilogicserver
+    SQLALCHEMY_DATABASE_URI = "replace_db_url"
+    """ FIXME what is this
     if 'sqlite' in SQLALCHEMY_DATABASE_URI:
         util.log('Basedir: '+basedir)
         SQLALCHEMY_DATABASE_URI = "sqlite:///" + path.join(basedir, "database/db.sqlite")+ '?check_same_thread=False'
+    """
 
     util.log(SQLALCHEMY_DATABASE_URI)
 

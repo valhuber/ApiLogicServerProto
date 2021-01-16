@@ -17,12 +17,12 @@ import sys
 import logic_bank_utils.util as logic_bank_utils
 
 (did_fix_path, sys_env_info) = \
-    logic_bank_utils.add_python_path(project_dir="LogicBank", my_file=__file__)  # FIXME -> project_name
+    logic_bank_utils.add_python_path(project_dir="replace_project_name", my_file=__file__)
 
 from flask import render_template
 from safrs import ValidationError
 
-import app as app
+import app as app  # database opened here
 
 
 # address where the api will be hosted, change this if you're not running the app on localhost!
