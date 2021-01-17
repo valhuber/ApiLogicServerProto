@@ -17,7 +17,11 @@ import logic_bank_utils.util as logic_bank_utils
 from flask import render_template
 from safrs import ValidationError
 
-import app as app  # database opened here
+use_api_module = True  # FIXME - review 7 choose
+if use_api_module:
+    import api as app  # remove app folder
+else:
+    import app as app  # database opened here
 
 
 # address where the api will be hosted, change this if you're not running the app on localhost!
