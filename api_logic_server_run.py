@@ -63,4 +63,4 @@ def after_request(response):
 
 
 if __name__ == "__main__":
-    app.run(host=host, threaded=False)
+    app.generate(host=host, threaded=False)
