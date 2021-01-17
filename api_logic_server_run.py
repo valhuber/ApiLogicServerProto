@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 """
-  This demo application demonstrates the functionality of the safrs documented REST API
-  When safrs is installed, you can run this app:
-  $ python3 demo_relationship.py [Listener-IP]
+  ApiLogicServer hello
+
+  $ python3 api_logic_server_run.py [Listener-IP]
 
   This will run the example on http://Listener-Ip:5000
-
-  - An sqlite database is created and populated
-  - A jsonapi rest API is created
-  - Swagger documentation is generated
-  - two simple rules created with LogicBank
 
 """
 import sys
