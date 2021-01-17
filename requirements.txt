@@ -9,3 +9,4 @@ email-validator
 LogicBank
 SAFRS
 logicbankutils
+flask-appbuilder
