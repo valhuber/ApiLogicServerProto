@@ -34,7 +34,7 @@ def create_app(config_filename=None, host="localhost"):
         db = safrs.DB  # opens (what?) database, returning session
         Base: declarative_base = db.Model
         session: Session = db.session
-        print("got session: " + str(session))
+        print("app/__init__#create_app - got session: " + str(session))
 
     def constraint_handler(message: str, constraint: object,
                            logic_row: LogicRow):  # message: str, constr: constraint, row: logic_row):
@@ -46,7 +46,7 @@ def create_app(config_filename=None, host="localhost"):
         db.init_app(app)
         # create_api(app, host)   REMOVE
         expose_api_models.expose_models(app, host)
-        create_admin_ui(app)
+        # FIXME required?  does not work - create_admin_ui(app)
 
     return app
 
