@@ -17,7 +17,7 @@ import logic_bank_utils.util as logic_bank_utils
 from flask import render_template
 from safrs import ValidationError
 
-use_api_module = True  # FIXME - review 7 choose
+use_api_module = True  # FIXME - review & choose
 if use_api_module:
     import api as app  # remove app folder
 else:
