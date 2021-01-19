@@ -47,18 +47,10 @@ def create_app(config_filename=None, host="localhost"):
     setup_logging()
     app = Flask("API Logic Server")
     app.config.from_object("config.Config")
-    #    app.config.update(SQLALCHEMY_DATABASE_URI="sqlite://")
-    # from database import db  # , session  FIXME eh?
-    use_file = False
-    if use_file:  # FIXME Achim cleanup this is a little obscure - can we bring inline?
-        db.db.init_app(app)
-        session = db.session
-    else:
-        # db: SQLAlchemy = SQLAlchemy()  REMOVE
-        db = safrs.DB  # opens (what?) database, returning session
-        Base: declarative_base = db.Model
-        session: Session = db.session
-        print("app/__init__#create_app - got session: " + str(session))
+    db = safrs.DB  # opens (what?) database, returning session
+    Base: declarative_base = db.Model
+    session: Session = db.session
+    print("app/__init__#create_app - got session: " + str(session))
 
     def constraint_handler(message: str, constraint: object,
                            logic_row: LogicRow):  # message: str, constr: constraint, row: logic_row):
@@ -68,8 +60,6 @@ def create_app(config_filename=None, host="localhost"):
 
     with app.app_context():
         db.init_app(app)
-        # create_api(app, host)   REMOVE
         expose_api_models.expose_models(app, host)
-        # FIXME required?  does not work - create_admin_ui(app)
 
     return app
