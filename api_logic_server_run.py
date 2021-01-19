@@ -17,7 +17,7 @@ import logic_bank_utils.util as logic_bank_utils
 from flask import render_template
 from safrs import ValidationError
 
-import app as app  # database opened here
+import api as app  # database opened here
 
 # address where the api will be hosted, change this if you're not running the app on localhost!
 host = sys.argv[1] if sys.argv[
