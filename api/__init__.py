@@ -4,7 +4,6 @@ from logic_bank.exec_row_logic.logic_row import LogicRow
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
-from admin.admin_view_ext import AdminViewExt
 from api import expose_api_models
 from database import db  # , session
 from flask import Flask
@@ -73,23 +72,4 @@ def create_app(config_filename=None, host="localhost"):
         expose_api_models.expose_models(app, host)
         # FIXME required?  does not work - create_admin_ui(app)
 
-    return app
-
-
-def create_admin_ui(app):
-    try:
-        admin = Admin(app, url="/admin")
-        for model in [models.User, models.Book, models.StoreModel, models.ItemModel]:
-            #  admin.add_view(sqla.ModelView(model, db.session))
-            admin.add_view(AdminViewExt(model, db.session))
-    except Exception as exc:
-        print(f"Failed to add flask-admin view {exc}")
-
-
-def create_app_for_test(config_filename=None, host="localhost"):
-    app = Flask("LogicBank Demo App")
-    app.config.from_object("config.Config")
-    db.init_app(app)
-    #  https://flask-sqlalchemy.palletsprojects.com/en/2.x/contexts/
-    app.app_context().push()
     return app
