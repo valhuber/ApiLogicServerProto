@@ -24,8 +24,13 @@ host = sys.argv[1] if sys.argv[
                       1:] else "localhost"  # 127.0.0.1 check in swagger or your lient what is used you wight need cors support
 app = app.create_app(host=host)
 
-@app.route('/api_hello')
-def api_hello():  # test it with: http://localhost:5000/api_hello?user=ApiLogicServer
+@app.route('/hello_world')
+def hello_world():  # test it with: http://localhost:5000/hello_world?user=ApiLogicServer
+    """
+    This is inserted to illustrate that APIs not limited to database objects, but are extensible.
+
+    See: https://github.com/thomaxxl/safrs/wiki/Customization
+    """
     user = request.args.get('user')
     return jsonify({"result": f'hello, {user}'})
 
