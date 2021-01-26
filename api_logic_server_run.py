@@ -25,8 +25,9 @@ host = sys.argv[1] if sys.argv[
 app = app.create_app(host=host)
 
 @app.route('/api_hello')
-def api_hello():
-    return jsonify({"result": "hello"})
+def api_hello():  # test it with: http://localhost:5000/api_hello?user=ApiLogicServer
+    user = request.args.get('user')
+    return jsonify({"result": f'hello, {user}'})
 
 @app.route('/')
 def welcome():
