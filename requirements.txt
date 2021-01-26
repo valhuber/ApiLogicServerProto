@@ -10,3 +10,5 @@ LogicBank
 SAFRS
 logicbankutils
 flask-appbuilder
+PyMySQL
+cryptography
